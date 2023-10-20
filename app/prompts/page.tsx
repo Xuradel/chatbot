@@ -66,12 +66,12 @@ const Page = () => {
             />
             <div className="font-black text-2xl">Ejemplo:</div>
             <Heading
-              title="Nuestros metodos de pago son..."
+              title={'"Nuestros metodos de pago son..."'}
               subtitle="tags: Pagos, metodos, como pagar"
             />
             <p>
-              Si el usuario escribe "Metodos de pago" se recibira la respuesta
-              proporcionada sera "Nuestros metodos de pago son..."
+              Si el usuario escribe {'"Metodos de pago"'} se recibira la
+              respuesta proporcionada sera {'"Nuestros metodos de pago son..."'}
             </p>
 
             <form onSubmit={handleSubmit}>
