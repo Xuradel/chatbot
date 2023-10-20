@@ -9,8 +9,9 @@ const Page = () => {
       <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-black tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-            Tecnologia al alcance de tu mano
+            Tecnolog&iacute;a al alcance de tu mano
           </h1>
+
           <p
             className={`max-w-2xl mb-6 font-light ${
               darkMode ? "text-gray-300" : "text-gray-500"
@@ -21,9 +22,15 @@ const Page = () => {
           </p>
           <a
             href="#"
-            className={`inline-flex border items-center justify-center px-5 py-3 text-base font-medium text-center ${darkMode ? 'text-white border-custom-white hover:bg-custom-gray focus:ring-custom-gray' : 'text-gray-900 border-gray-300 hover:bg-gray-100 focus:ring-gray-100'} rounded-lg mr-4`}
+            className={`inline-flex border items-center justify-center px-5 py-3 text-base font-medium text-center ${
+              darkMode
+                ? "text-white border-custom-white hover:bg-custom-gray focus:ring-custom-gray"
+                : "text-gray-900 border-gray-300 hover:bg-gray-100 focus:ring-gray-100"
+            } rounded-lg mr-4`}
           >
-            <span className="hidden sm:flex">Explora la&nbsp;Colecci&oacute;n</span>
+            <span className="hidden sm:flex">
+              Explora la&nbsp;Colecci&oacute;n
+            </span>
 
             <svg
               className="w-5 h-5 ml-2 -mr-1"
@@ -40,7 +47,11 @@ const Page = () => {
           </a>
           <a
             href="#"
-            className={`inline-flex border items-center justify-center px-5 py-3 text-base font-medium text-center ${darkMode ? 'text-white border-custom-white hover:bg-custom-gray focus:ring-custom-gray' : 'text-gray-900 border-gray-300 hover:bg-gray-100 focus:ring-gray-100'} rounded-lg mr-4`}
+            className={`inline-flex border items-center justify-center px-5 py-3 text-base font-medium text-center ${
+              darkMode
+                ? "text-white border-custom-white hover:bg-custom-gray focus:ring-custom-gray"
+                : "text-gray-900 border-gray-300 hover:bg-gray-100 focus:ring-gray-100"
+            } rounded-lg mr-4`}
           >
             Contáctanos
           </a>
