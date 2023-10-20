@@ -8,13 +8,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        'avenir': ['Avenir Next LT Pro', 'sans-serif'],
+      },
+      fontWeight: {
+        'light': '300',
+        'regular': '500',
+        'medium': '600',
+        'bold': '700',
+        'black': '900',
+      },
+      colors: {
+        'custom-gray': '#121212',
+        'custom-white': '#fdfbf7',
       },
     },
   },
+  variants: {},
   plugins: [],
 }
 export default config
