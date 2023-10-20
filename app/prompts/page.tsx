@@ -6,7 +6,7 @@ import Banner from "../components/Banner";
 import { useDarkMode } from "../hooks/DarkModeProvider";
 import Container from "../components/Container";
 
-const page = () => {
+const Page = () => {
   const [respuesta, setRespuesta] = useState("");
   const [palabrasClave, setPalabrasClave] = useState("");
   const [prioridad, setPrioridad] = useState("1");
@@ -137,4 +137,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

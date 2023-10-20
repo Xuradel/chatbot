@@ -1,7 +1,7 @@
 "use client";
 import { useDarkMode } from "../hooks/DarkModeProvider";
 
-const page = () => {
+const Page = () => {
   const { darkMode } = useDarkMode();
 
   return (
@@ -23,7 +23,8 @@ const page = () => {
             href="#"
             className={`inline-flex border items-center justify-center px-5 py-3 text-base font-medium text-center ${darkMode ? 'text-white border-custom-white hover:bg-custom-gray focus:ring-custom-gray' : 'text-gray-900 border-gray-300 hover:bg-gray-100 focus:ring-gray-100'} rounded-lg mr-4`}
           >
-            <span className="hidden sm:flex">Explora la</span>&nbsp;Colección
+            <span className="hidden sm:flex">Explora la&nbsp;Colecci&oacute;n</span>
+
             <svg
               className="w-5 h-5 ml-2 -mr-1"
               fill="currentColor"
@@ -55,4 +56,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

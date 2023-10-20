@@ -7,7 +7,7 @@ import { useDarkMode } from "../../../hooks/DarkModeProvider";
 import Container from "../../../components/Container";
 import { usePathname } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const pathname = usePathname();
   const id = pathname.split("/").pop();
   const [respuesta, setRespuesta] = useState("");
@@ -156,4 +156,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
