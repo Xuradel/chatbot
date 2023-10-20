@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import Banner from "../components/Banner";
 import ItemLoader from "../components/ItemLoader";
 import Container from "../components/Container";
+import { useRouter } from "next/navigation";
 
 interface IPrompt {
   _id: string;
@@ -12,9 +13,10 @@ interface IPrompt {
   prioridad: number;
 }
 
-const page = () => {
+const Page = () => {
   const [prompts, setPrompts] = useState<IPrompt[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchPrompts() {
@@ -52,6 +54,12 @@ const page = () => {
     } catch (error) {
       console.error("Error deleting the prompt:", error);
     }
+  };
+
+  const handleEdit = (prompt: IPrompt) => {
+
+    // Navega a la página de edición con el ID del prompt como parámetro
+    router.push(`/prompts/edit/${prompt._id}`);
   };
 
   return (
@@ -100,6 +108,13 @@ const page = () => {
                           </p>
                         </div>
                         <button
+                          onClick={() => handleEdit(prompt)}
+                          className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded mr-2"
+                        >
+                          Editar
+                        </button>
+
+                        <button
                           onClick={() => handleDelete(prompt._id, index)}
                           className="bg-rose-500 hover:bg-red-600 text-white px-3 py-1 rounded"
                         >
@@ -118,4 +133,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

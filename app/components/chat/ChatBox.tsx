@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 interface IMessage {
@@ -18,6 +18,7 @@ interface ChatBoxProps {
 }
 
 const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
+  const conversationRef = useRef<HTMLDivElement>(null);
   const [userMessage, setUserMessage] = useState<string>("");
   const [conversation, setConversation] = useState<IMessage[]>([
     {
@@ -43,17 +44,29 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
 
   const handleSendMessage = async () => {
     if (!userMessage.trim()) return;
-
+  
     const botResponse = getBotResponse(userMessage);
-
-    setConversation([
-      ...conversation,
-      { sender: "user", content: userMessage },
-      { sender: "bot", content: botResponse },
-    ]);
-
+  
+    setConversation((prev) => {
+      const updatedConversation = [
+        ...prev,
+        { sender: "user" as const, content: userMessage },
+        { sender: "bot" as const, content: botResponse },
+      ];
+  
+      // Ajusta el scrollTop de la conversación para que muestre los mensajes más recientes
+      if (conversationRef.current) {
+        setTimeout(() => {
+          conversationRef.current!.scrollTop = conversationRef.current!.scrollHeight;
+        }, 0);
+      }
+  
+      return updatedConversation;
+    });
+  
     setUserMessage("");
   };
+  
 
   const getBotResponse = (message: string): string => {
     let matchedPrompt: IPrompt | null = null;
@@ -70,9 +83,8 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
       }
     });
 
-    return matchedPrompt
-      ? matchedPrompt.prompt
-      : "¿Puedes reformular la pregunta?";
+    return matchedPrompt ? (matchedPrompt as IPrompt).prompt : "¿Puedes reformular la pregunta?";
+
   };
 
   return (
@@ -86,7 +98,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
           <AiOutlineClose size={20} />
         </button>
       </div>
-      <div className="flex-1 overflow-y-auto py-2">
+      <div className="flex-1 overflow-y-auto py-2" ref={conversationRef}>
         {conversation.map((message, index) => (
           <div
             key={index}
