@@ -27,7 +27,7 @@ const Navbar = () => {
     <div className="py-1 gap-1 shadow ">
       <Container>
         <div className="flex items-center justify-between">
-          <Link href="/">
+          <Link href="/" className="z-50">
             <div className="group relative px-4 cursor-pointer">
               <div className="flex h-7 w-7 sm:w-10 sm:h-10 items-center justify-center rounded-full hover:text-blue-500">
                 <AiOutlineAppstore size={30} />

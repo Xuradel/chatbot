@@ -126,7 +126,7 @@ const Page = () => {
               </button>
               {successMessage && (
                 <span className="text-green-600 ml-4">
-                  Prompt creado con éxito.
+                  Prompt creado con exito.
                 </span>
               )}
             </form>

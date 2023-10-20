@@ -51,7 +51,10 @@ const LoginForm = () => {
       "
       >
         <h1 className="text-xl font-bold my-4 text-black">Sign In</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3 text-black">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-3 text-black"
+        >
           <input
             onChange={(e) => setEmail(e.target.value)}
             type="text"
@@ -72,8 +75,12 @@ const LoginForm = () => {
             </div>
           )}
 
-          <Link className="text-sm mt-3 text-right text-black" href={"/register"}>
-            Don't have an account? <span className="underline">Register</span>
+          <Link
+            className="text-sm mt-3 text-right text-black"
+            href={"/register"}
+          >
+            Don&apos;t have an account?{" "}
+            <span className="underline">Register</span>
           </Link>
         </form>
       </div>
