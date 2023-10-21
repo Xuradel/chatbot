@@ -2,11 +2,8 @@
 import React, { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import {
-  AiOutlineShopping,
   AiOutlineUser,
-  AiOutlineCustomerService,
   AiOutlineAppstore,
-  AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { BsSun } from "react-icons/bs";
@@ -51,21 +48,12 @@ const Navbar = () => {
                 {darkMode ? "Claro" : "Oscuro"}
               </span>
             </div>
-
-            <NavItem label="Tienda" icon={<AiOutlineShopping size={30} />} />
             <NavItem
               label="Cuenta"
               icon={<AiOutlineUser size={30} />}
               link={`${session? '/dashboard' : '/login'}`}
             />
-            <NavItem
-              label="Contacto"
-              icon={<AiOutlineCustomerService size={30} />}
-            />
-            <NavItem
-              label="Carrito"
-              icon={<AiOutlineShoppingCart size={30} />}
-            />
+
           </div>
         </div>
       </Container>
