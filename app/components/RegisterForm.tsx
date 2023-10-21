@@ -75,6 +75,8 @@ const RegisterForm = () => {
     border-t-4
     border-blue-400
     bg-white
+    w-72
+    sm:w-96
     "
       >
         <h1 className="text-xl font-bold my-4 text-black">Create an account</h1>

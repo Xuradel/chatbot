@@ -48,9 +48,11 @@ const LoginForm = () => {
       border-t-4
       border-blue-400
       bg-white
+      w-72
+      sm:w-96
       "
       >
-        <h1 className="text-xl font-bold my-4 text-black">Sign In</h1>
+        <h1 className="text-xl font-bold my-4 text-black">Admin</h1>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-3 text-black"

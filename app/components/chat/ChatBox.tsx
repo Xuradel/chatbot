@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useDarkMode } from "@/app/hooks/DarkModeProvider";
 
 interface IMessage {
   sender: "user" | "bot";
@@ -27,7 +28,8 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
     },
   ]);
   const [prompts, setPrompts] = useState<IPrompt[]>([]);
-
+  const { darkMode } = useDarkMode();
+  
   useEffect(() => {
     async function fetchPrompts() {
       try {
@@ -41,11 +43,20 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
     fetchPrompts();
   }, []);
   
-
+  const normalizeText = (text: string): string => {
+    return text
+      .normalize("NFD") // Esta línea descompone las letras con tilde en letra + tilde
+      .replace(/[\u0300-\u036f]/g, "") // Esta línea elimina las tildes
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/gi, "");
+  };
+  
+  
   const handleSendMessage = async () => {
     if (!userMessage.trim()) return;
-  
-    const botResponse = getBotResponse(userMessage);
+    const normalizedUserMessage = normalizeText(userMessage);
+
+    const botResponse = getBotResponse(normalizedUserMessage);
   
     setConversation((prev) => {
       const updatedConversation = [
@@ -70,32 +81,35 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
 
   const getBotResponse = (message: string): string => {
     let matchedPrompt: IPrompt | null = null;
-
+  
     prompts.forEach((prompt) => {
-      const matchedKeywords = prompt.palabras.filter((palabra) =>
-        message.includes(palabra)
-      );
-
+      const matchedKeywords = prompt.palabras.filter((palabra) => {
+        // Aquí también estamos normalizando cada palabra clave antes de compararla
+        return message.includes(normalizeText(palabra));
+      });
+  
       if (matchedKeywords.length > 0) {
         if (!matchedPrompt || prompt.prioridad < matchedPrompt.prioridad) {
           matchedPrompt = prompt;
         }
       }
     });
-
-    return matchedPrompt ? (matchedPrompt as IPrompt).prompt : "¿Puedes reformular la pregunta?";
-
+  
+    return matchedPrompt
+      ? (matchedPrompt as IPrompt).prompt
+      : "¿Puedes reformular la pregunta?";
   };
+  
 
   return (
     <div className="w-64 h-80 bg-white border border-gray-300 p-2 rounded-lg shadow-lg flex flex-col">
       <div className="flex justify-between items-center">
-        <div className="font-semibold">Soporte</div>
+        <div className="font-semibold text-black">Soporte</div>
         <button
           className="rounded-full hover:bg-gray-200 p-1"
           onClick={() => setIsOpen(false)}
         >
-          <AiOutlineClose size={20} />
+          <AiOutlineClose size={20} color="black"/>
         </button>
       </div>
       <div className="flex-1 overflow-y-auto py-2" ref={conversationRef}>
@@ -116,7 +130,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
         <input
           value={userMessage}
           onChange={(e) => setUserMessage(e.target.value)}
-          onKeyPress={(e) => {
+          onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSendMessage();
             }

@@ -57,7 +57,6 @@ const Page = () => {
   };
 
   const handleEdit = (prompt: IPrompt) => {
-
     // Navega a la página de edición con el ID del prompt como parámetro
     router.push(`/prompts/edit/${prompt._id}`);
   };
@@ -90,9 +89,10 @@ const Page = () => {
                     {prompts.map((prompt, index) => (
                       <li
                         key={index}
-                        className="flex justify-between items-start mb-4"
+                        className="flex flex-col justify-between items-start mb-4
+                        lg:flex-row"
                       >
-                        <div className="w-3/4">
+                        <div className="w-full lg:w-3/4 flex flex-col gap-1">
                           <h3 className="font-bold">{prompt.prompt}</h3>
                           <p className="font-bold">
                             Palabras clave:
@@ -107,19 +107,21 @@ const Page = () => {
                             </span>
                           </p>
                         </div>
-                        <button
-                          onClick={() => handleEdit(prompt)}
-                          className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded mr-2"
-                        >
-                          Editar
-                        </button>
+                        <div className="flex gap-1"> 
+                          <button
+                            onClick={() => handleEdit(prompt)}
+                            className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded mr-2"
+                          >
+                            Editar
+                          </button>
 
-                        <button
-                          onClick={() => handleDelete(prompt._id, index)}
-                          className="bg-rose-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                        >
-                          Eliminar
-                        </button>
+                          <button
+                            onClick={() => handleDelete(prompt._id, index)}
+                            className="bg-rose-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                          >
+                            Eliminar
+                          </button>
+                        </div>
                       </li>
                     ))}
                   </ul>

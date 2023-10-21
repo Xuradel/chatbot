@@ -5,9 +5,11 @@ const Page = () => {
   const { darkMode } = useDarkMode();
 
   return (
-    <section className={`${darkMode ? "bg-custom-gray" : "bg-custom-white"}`}>
-      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-        <div className="mr-auto place-self-center lg:col-span-7">
+    <section
+      className={`${darkMode ? "bg-custom-gray" : "bg-custom-white"} mt-8`}
+    >
+      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 place-items-center">
+        <div className="pb-16 lg:pb-0 lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-black tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
             Tecnolog&iacute;a al alcance de tu mano
           </h1>
@@ -28,10 +30,8 @@ const Page = () => {
                 : "text-gray-900 border-gray-300 hover:bg-gray-100 focus:ring-gray-100"
             } rounded-lg mr-4`}
           >
-            <span className="hidden sm:flex">
-              Explora la&nbsp;Colecci&oacute;n
-            </span>
-
+            <span className="hidden sm:flex">Explora la</span>
+            &nbsp;Colecci&oacute;n
             <svg
               className="w-5 h-5 ml-2 -mr-1"
               fill="currentColor"
@@ -56,7 +56,7 @@ const Page = () => {
             Contáctanos
           </a>
         </div>
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+        <div className="lg:mt-0 lg:col-span-5 lg:flex max-w-lg">
           <img
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
             alt="mockup"
