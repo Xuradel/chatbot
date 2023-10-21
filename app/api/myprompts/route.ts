@@ -2,6 +2,8 @@ import { connectMongoDB } from "@/lib/mongodb";
 import Prompt from "@/models/prompt";
 import { NextRequest, NextResponse } from "next/server";
 
+// Obtener todos los prompts
+
 export async function GET(req: NextRequest) {
   try {
     await connectMongoDB();

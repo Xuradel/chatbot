@@ -2,6 +2,8 @@ import { connectMongoDB } from "@/lib/mongodb";
 import Prompt from "@/models/prompt";
 import { NextRequest, NextResponse } from "next/server";
 
+// Creacion de prompt
+
 export async function POST(req: NextRequest){
     try {
         const {prompt, palabras, prioridad} = await req.json();

@@ -2,20 +2,19 @@ import { connectMongoDB } from "@/lib/mongodb";
 import Prompt from "@/models/prompt";
 import { NextRequest, NextResponse } from "next/server";
 
+// Actualizar prompt
+
 export async function PUT(req: NextRequest) {
     try {
-        // Connect to MongoDB
         await connectMongoDB();
 
-        // Extract the prompt data from the request body
         const { id, prompt, palabras, prioridad } = await req.json();
 
-        // Use Mongoose to find the prompt by its ID and update it
         const result = await Prompt.findByIdAndUpdate(id, {
             prompt: prompt,
             palabras: palabras,
             prioridad: prioridad
-        }, { new: true });  // { new: true } returns the modified document rather than the original
+        }, { new: true });  // se utiliza true para retornar el actualizado
 
         if (!result) {
             return NextResponse.json({ message: 'No prompt found with the provided ID.' }, { status: 404 });

@@ -2,15 +2,17 @@ import { connectMongoDB } from "@/lib/mongodb";
 import Prompt from "@/models/prompt";
 import { NextRequest, NextResponse } from "next/server";
 
+// Eliminar prompt por ID
+
 export async function POST(req: NextRequest) {
     try {
-        // Connect to MongoDB
+        // Conexion a mongoDB
         await connectMongoDB();
 
-        // Extract the prompt ID from the request body
+        // Extraer ID del request body
         const { id } = await req.json();
 
-        // Use Mongoose to delete the prompt by its ID
+        // Usando mongoose se elimina un objeto por el ID
         const result = await Prompt.findByIdAndDelete(id);
 
         if (!result) {

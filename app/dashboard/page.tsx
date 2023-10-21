@@ -107,17 +107,17 @@ const Page = () => {
                             </span>
                           </p>
                         </div>
-                        <div className="flex gap-1"> 
+                        <div className="flex gap-1">
                           <button
                             onClick={() => handleEdit(prompt)}
-                            className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded mr-2"
+                            className="border border-zinc-500 hover:bg-zinc-300 text-zinc-500 px-3 py-1 rounded mr-2"
                           >
                             Editar
                           </button>
 
                           <button
                             onClick={() => handleDelete(prompt._id, index)}
-                            className="bg-rose-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                            className="bg-stone-500 hover:bg-stone-600 text-white px-3 py-1 rounded"
                           >
                             Eliminar
                           </button>

@@ -2,15 +2,14 @@ import { connectMongoDB } from "@/lib/mongodb";
 import Prompt from "@/models/prompt";
 import { NextRequest, NextResponse } from "next/server";
 
+// Devuelve un prompt por ID
+
 export async function GET(req: NextRequest) {
     try {
-        // Connect to MongoDB
         await connectMongoDB();
 
-        // Extract the prompt ID from the request URL
         const id = req.url.split('/').pop();
 
-        // Use Mongoose to fetch the prompt by its ID
         const prompt = await Prompt.findById(id);
 
         if (!prompt) {
