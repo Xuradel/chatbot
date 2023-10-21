@@ -67,7 +67,7 @@ const Page = () => {
         <Sidebar />
       </div>
 
-      <div className="w-11/12 sm:w-3/4 md:w-4/5 xl:w-11/12 h-full mr-8 mt-8">
+      <div className="w-11/12 sm:w-3/4 md:w-4/5 xl:w-11/12 h-full mr-8 mt-8 z-40">
         <Container>
           <div className="flex flex-col gap-4">
             <Banner

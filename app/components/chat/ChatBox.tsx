@@ -25,7 +25,12 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
       sender: "bot",
       content: "Hola soy tu asistente virtual, ¿Cómo puedo ayudarte?",
     },
-  ]);
+    {
+      sender: "bot",
+      content: "Por ejemplo, puedes preguntarme: '¿Dónde están ubicados?', 'Mi celular se dañó', '¿Cuáles iPhones tienen?'",
+    }
+]);
+
   const [prompts, setPrompts] = useState<IPrompt[]>([]);
 
   useEffect(() => {
@@ -115,7 +120,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
 
     return matchedPrompt
       ? (matchedPrompt as IPrompt).prompt
-      : "¿Puedes reformular la pregunta?";
+      : "Lo siento, no pude comprender tu consulta. ¿Puedes reformular la pregunta?";
   };
 
   const clearHistory = () => {
