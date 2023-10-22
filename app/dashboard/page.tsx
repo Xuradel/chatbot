@@ -5,7 +5,6 @@ import Banner from "../components/Banner";
 import ItemLoader from "../components/ItemLoader";
 import Container from "../components/Container";
 import { useRouter } from "next/navigation";
-export const revalidate = 0
 
 interface IPrompt {
   _id: string;
@@ -22,7 +21,12 @@ const Page = () => {
   useEffect(() => {
     async function fetchPrompts() {
       try {
-        const response = await fetch("/api/myprompts", { cache: "no-store" });
+        const response = await fetch("/api/myprompts", {
+          cache: "no-store",
+          next: {
+            revalidate: 1,
+          },
+        });
         const data = await response.json();
         setPrompts(data);
       } catch (error) {

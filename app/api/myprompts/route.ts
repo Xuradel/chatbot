@@ -1,6 +1,7 @@
 import { connectMongoDB } from "@/lib/mongodb";
 import Prompt from "@/models/prompt";
 import { NextRequest, NextResponse } from "next/server";
+export const revalidate = 10;
 
 // Obtener todos los prompts
 
