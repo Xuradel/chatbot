@@ -5,6 +5,7 @@ import Banner from "../components/Banner";
 import ItemLoader from "../components/ItemLoader";
 import Container from "../components/Container";
 import { useRouter } from "next/navigation";
+export const revalidate = 0
 
 interface IPrompt {
   _id: string;
