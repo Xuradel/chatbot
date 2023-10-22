@@ -51,7 +51,7 @@ const Sidebar = () => {
         absolute top-24 sm:top-20 sm:shadow"
         >
           <ul className="space-y-2 font-medium">
-            <li>
+            <li className="z-50">
               <a
                 href="/dashboard"
                 className={`flex items-center p-2 text-gray-900 rounded-lg ${
@@ -80,7 +80,7 @@ const Sidebar = () => {
                 </span>
               </a>
             </li>
-            <li>
+            <li className="z-50">
               <a
                 href="/prompts"
                 className={`flex items-center p-2 text-gray-900 rounded-lg ${
@@ -108,7 +108,7 @@ const Sidebar = () => {
               </a>
             </li>
 
-            <li>
+            <li className="z-50">
               <a
                 href="#"
                 className={`flex items-center p-2 text-gray-900 rounded-lg ${

@@ -27,23 +27,23 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
     },
     {
       sender: "bot",
-      content: "Por ejemplo, puedes preguntarme: '¿Dónde están ubicados?', 'Mi celular se dañó', '¿Cuáles iPhones tienen?'",
-    }
-]);
+      content:
+        "Por ejemplo, puedes preguntarme: '¿Dónde están ubicados?', 'Mi celular se dañó', '¿Cuáles iPhones tienen?'",
+    },
+  ]);
 
   const [prompts, setPrompts] = useState<IPrompt[]>([]);
 
   useEffect(() => {
-
     // Recuperar historial si existe
     const savedConversation = localStorage.getItem("chatbotHistory");
     if (savedConversation) {
       setConversation(JSON.parse(savedConversation));
     }
-
+    // Obtener las respuestas de la DB
     async function fetchPrompts() {
       try {
-        const response = await fetch("/api/myprompts");
+        const response = await fetch("/api/myprompts", { cache: "no-store" });
         const data = await response.json();
         setPrompts(data);
       } catch (error) {
@@ -51,17 +51,16 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
       }
     }
     fetchPrompts();
-    
-
   }, []);
 
   // Permitir que el chat siempre muestre los mensajes nuevos al refrescar la pagina
   useLayoutEffect(() => {
     if (conversationRef.current) {
-        conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
+      conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
     }
-}, [conversation]);
+  }, [conversation]);
 
+  // Normalizar texto para facilitar entendimiento
   const normalizeText = (text: string): string => {
     return text
       .normalize("NFD")
@@ -70,6 +69,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
       .replace(/[^a-z0-9\s]/gi, "");
   };
 
+  // Funcion principal para control de la conversacion
   const handleSendMessage = async () => {
     if (!userMessage.trim()) return;
     const normalizedUserMessage = normalizeText(userMessage);
@@ -102,7 +102,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
 
     setUserMessage("");
   };
-
+  // Logica del bot para devolver respuestas
   const getBotResponse = (message: string): string => {
     let matchedPrompt: IPrompt | null = null;
 
@@ -138,10 +138,11 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
       <div className="flex justify-between items-center">
         <div className="font-semibold text-black">Soporte</div>
         <div className="flex gap-1 items-center">
-          <button 
-          onClick={()=>clearHistory()}
-          className="rounded-full hover:bg-gray-200 p-1">
-            <RiDeleteBin5Line size={20} color="black"/>
+          <button
+            onClick={() => clearHistory()}
+            className="rounded-full hover:bg-gray-200 p-1"
+          >
+            <RiDeleteBin5Line size={20} color="black" />
           </button>
           <button
             className="rounded-full hover:bg-gray-200 p-1"
@@ -175,7 +176,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ setIsOpen }) => {
             }
           }}
           placeholder="Escribe tu mensaje..."
-          className="w-3/4 p-1 border rounded text-xs"
+          className="w-3/4 p-1 border rounded text-xs text-black"
         />
         <button
           onClick={handleSendMessage}

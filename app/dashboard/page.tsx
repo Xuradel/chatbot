@@ -21,7 +21,7 @@ const Page = () => {
   useEffect(() => {
     async function fetchPrompts() {
       try {
-        const response = await fetch("/api/myprompts");
+        const response = await fetch("/api/myprompts", { cache: "no-store" });
         const data = await response.json();
         setPrompts(data);
       } catch (error) {
