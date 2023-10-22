@@ -21,7 +21,11 @@ const Page = () => {
   useEffect(() => {
     async function fetchPrompts() {
       try {
-        const response = await fetch("/api/myprompts", { cache: "no-store" });
+        const response = await fetch("/api/myprompts", {
+          headers: {
+            'Cache-Control': 'no-store'
+          }
+        });
         const data = await response.json();
         setPrompts(data);
       } catch (error) {
@@ -32,7 +36,8 @@ const Page = () => {
     }
 
     fetchPrompts();
-  }, []);
+}, []);
+
 
   const handleDelete = async (id: string, index: number) => {
     try {
